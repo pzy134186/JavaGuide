@@ -128,7 +128,7 @@ rows 列表示根据表统计信息及选用情况，大致估算出找到所需
 这列包含了 MySQL 解析查询的额外信息，通过这些信息，可以更准确的理解 MySQL 到底是如何执行查询的。常见的值如下：
 
 - **Using filesort**：在排序时使用了外部的索引排序，没有用到表内索引进行排序。
-- **Using temporary**：MySQL 需要创建临时表来存储查询的结果，常见于 ORDER BY 和 GROUP BY。
+- **Using temporary**：MySQL 需要创建临时表来存储查询的结果，常见于 ORDER BY 和 GROUP BY，这通常发生在对没有索引的列进行GROUP BY时，或者ORDER BY里的列不都在索引里，需要添加合适的索引。
 - **Using index**：表明查询使用了覆盖索引，不用回表，查询效率非常高。
 - **Using index condition**：表示查询优化器选择使用了索引条件下推这个特性。
 - **Using where**：表明查询使用了 WHERE 子句进行条件过滤。一般在没有使用到索引的时候会出现。
